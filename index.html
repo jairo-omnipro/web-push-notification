@@ -10,7 +10,7 @@
     <h2>Firebase Web Push Notification</h2>
 
     <script type="module">
-        import {firebase} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+        import {initializeApp, messaging} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
         import "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
 
         const firebaseConfig = {
@@ -22,12 +22,12 @@
             appId: "1:1055055539691:web:0f4c70586ab562cefbbdae"
         };
 
-        const app = firebase.initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig);
 
-        const messaging = firebase.messaging();
+        const _messaging = messaging();
 
         function initializeFireBaseMessaging(){
-            messaging
+            _messaging
                 .requestPermission()
                 .then(function () {
                     console.log("Notification Permission")
@@ -40,12 +40,12 @@
                 });
         }
 
-        messaging.onMessage(function (payload) {
+        _messaging.onMessage(function (payload) {
             console.log(payload)
         });
 
-        messaging.onTokenRefresh(function () {
-            messaging.getToken()
+        _messaging.onTokenRefresh(function () {
+            _messaging.getToken()
                 .then(function (newToken) {
                     console.log("New Token : " + newToken)
                 })
