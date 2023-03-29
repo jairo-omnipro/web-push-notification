@@ -11,7 +11,7 @@
 
     <script type="module">
         import {initializeApp} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
-        import "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
+        import {messaging} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-messaging.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAAETyJlBnNRkm4rPJn4Jiebn5xmbvzfQg",
@@ -24,7 +24,7 @@
 
         const app = initializeApp(firebaseConfig);
 
-        const _messaging = firebase.messaging();
+        const _messaging = messaging();
 
         function initializeFireBaseMessaging(){
             _messaging
