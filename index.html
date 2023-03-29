@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Push Notification Test</title>
+</head>
+<body>
+    <h2>Firebase Web Push Notification</h2>
+
+    <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-messaging.js"></script>
+    <script>
+        firebase.initializeApp({
+        messagingSenderId: "1055055539691"
+        })
+
+        const messaging = firebase.messaging();
+
+        function initializeFireBaseMessaging(){
+            messaging
+                .requestPermission()
+                .then(function () {
+                    console.log("Notification Permission")
+                })
+                .then(function (token) {
+                    console.log("Token : " + token)
+                })
+                .catch(function (reason) {
+                    console.log(reason)
+                });
+        }
+
+        messaging.onMessage(function (payload) {
+            console.log(payload)
+        });
+
+        messaging.onTokenRefresh(function () {
+            messaging.getToken()
+                .then(function (newToken) {
+                    console.log("New Token : " + newToken)
+                })
+                .catch(function (reason) {
+                    console.log(reason)
+                })
+        });
+
+        initializeFireBaseMessaging();
+
+    </script>
+    
+</body>
+</html>
